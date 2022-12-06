@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:table_calendar/table_calendar.dart';
+
+import '../widgets/drawer_list_view_widget.dart';
+import '../widgets/home_calendar_widget.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -13,25 +15,11 @@ class HomePage extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(),
         body: Column(
-          children: [
-            Container(
-              child: TableCalendar<DateTime>(
-                firstDay: DateTime(2022, 1),
-                lastDay: DateTime(2100),
-                focusedDay: DateTime.now(),
-              ),
-            )
-          ],
+          children: const [HomeCalendarWidget()],
         ),
         drawer: Drawer(
           width: deviceWidth * 0.3,
-          child: ListView(
-            children: const [
-              DrawerHeader(
-                child: Text('abcde'),
-              )
-            ],
-          ),
+          child: const DrawerListViewWidget(),
         ),
       ),
     );
