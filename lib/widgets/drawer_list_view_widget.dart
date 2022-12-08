@@ -7,7 +7,11 @@ class DrawerListViewWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView(
-      children: const [Text('data')],
+      children: const [
+        DrawerHeader(child: Text('data')),
+        Text('data'),
+        Text('data'),
+      ],
     );
   }
 }
