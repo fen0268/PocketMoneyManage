@@ -13,6 +13,7 @@ class HomeCalendarWidget extends ConsumerWidget {
         firstDay: DateTime(2022),
         lastDay: DateTime(2100),
         focusedDay: DateTime.now(),
+        headerStyle: const HeaderStyle(formatButtonVisible: false),
       ),
     );
   }
