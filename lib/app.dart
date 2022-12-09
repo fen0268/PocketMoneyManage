@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'pages/home_page.dart';
 import 'utils/extensions/build_context.dart';
@@ -98,6 +99,14 @@ class App extends StatelessWidget {
         sliderTheme:
             SliderThemeData(overlayShape: SliderComponentShape.noOverlay),
       ),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ja'),
+      ],
+      locale: const Locale('ja'),
       home: const HomePage(),
     );
   }
