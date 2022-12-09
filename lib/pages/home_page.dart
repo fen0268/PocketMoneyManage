@@ -18,7 +18,7 @@ class HomePage extends ConsumerWidget {
           children: const [HomeCalendarWidget()],
         ),
         drawer: Drawer(
-          width: deviceWidth * 0.3,
+          width: deviceWidth * 0.4,
           child: const DrawerListViewWidget(),
         ),
       ),
