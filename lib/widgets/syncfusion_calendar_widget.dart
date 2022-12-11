@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
+import '../utils/syncfusion_calendar_month_design.dart';
+
 class SyncfusionCalendarWidget extends ConsumerWidget {
   const SyncfusionCalendarWidget({super.key});
 
@@ -15,18 +17,19 @@ class SyncfusionCalendarWidget extends ConsumerWidget {
         locale: const Locale('ja'),
         child: SfCalendar(
           view: CalendarView.schedule,
-          headerDateFormat: 'yyyy年 MM月',
+          headerHeight: 0,
+          scheduleViewMonthHeaderBuilder: scheduleViewHeaderBuilder,
           scheduleViewSettings: ScheduleViewSettings(
             /// MonthHeaderSettings
             monthHeaderSettings: MonthHeaderSettings(
               height: deviceHeight * 0.1,
-              monthFormat: 'yyyy年 MM月',
+              monthFormat: 'yyyy年 M月',
             ),
 
             /// WeekHeaderSettings
             weekHeaderSettings: const WeekHeaderSettings(
-              startDateFormat: 'MM月 dd日',
-              endDateFormat: 'dd日',
+              startDateFormat: 'M月 d日',
+              endDateFormat: 'M月 d日',
             ),
           ),
         ),
