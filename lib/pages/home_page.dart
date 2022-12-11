@@ -28,11 +28,7 @@ class HomePage extends ConsumerWidget {
             )
           ],
         ),
-        body: Column(
-          children: const [
-            SyncfusionCalendarWidget(),
-          ],
-        ),
+        body: const SyncfusionCalendarWidget(),
         drawer: Drawer(
           width: deviceWidth * 0.4,
           child: const DrawerListViewWidget(),

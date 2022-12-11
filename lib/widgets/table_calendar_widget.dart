@@ -7,15 +7,19 @@ class TableCalendarWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      padding: const EdgeInsets.only(left: 10, right: 10),
-      child: TableCalendar<DateTime>(
-        firstDay: DateTime(2022),
-        lastDay: DateTime(2100),
-        focusedDay: DateTime.now(),
-        headerStyle: const HeaderStyle(
-          formatButtonVisible: false,
-          titleCentered: true,
+    return Scaffold(
+      appBar: AppBar(),
+      body: Container(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: TableCalendar<DateTime>(
+          firstDay: DateTime(2022),
+          lastDay: DateTime(2100),
+          focusedDay: DateTime.now(),
+          headerStyle: const HeaderStyle(
+            formatButtonVisible: false,
+            titleCentered: true,
+          ),
+          locale: 'ja',
         ),
       ),
     );
