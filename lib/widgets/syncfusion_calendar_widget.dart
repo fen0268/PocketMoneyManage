@@ -22,14 +22,14 @@ class SyncfusionCalendarWidget extends ConsumerWidget {
           scheduleViewSettings: ScheduleViewSettings(
             /// MonthHeaderSettings
             monthHeaderSettings: MonthHeaderSettings(
-              height: deviceHeight * 0.1,
+              height: deviceHeight * 0.20,
               monthFormat: 'yyyy年 M月',
             ),
 
             /// WeekHeaderSettings
             weekHeaderSettings: const WeekHeaderSettings(
               startDateFormat: 'M月 d日',
-              endDateFormat: 'M月 d日',
+              endDateFormat: 'd日',
             ),
           ),
         ),

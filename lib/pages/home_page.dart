@@ -14,6 +14,7 @@ class HomePage extends ConsumerWidget {
     final deviceWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: const Color(0xFFF0F0F0),
         appBar: AppBar(
           actions: [
             IconButton(
