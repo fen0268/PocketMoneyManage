@@ -12,6 +12,8 @@ class SyncfusionCalendarWidget extends ConsumerWidget {
     final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
     return Container(
+      width: deviceWidth,
+      height: deviceHeight,
       child: Localizations.override(
         context: context,
         locale: const Locale('ja'),
