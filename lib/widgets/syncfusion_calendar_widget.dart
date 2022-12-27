@@ -32,7 +32,7 @@ class SyncfusionCalendarWidget extends ConsumerWidget {
                   calendarController.displayDate = DateTime.now();
                 },
                 child: Image(
-                  image: const AssetImage('assets/January.jpg'),
+                  image: AssetImage('assets/$monthName.jpg'),
                   fit: BoxFit.cover,
                   width: details.bounds.width,
                   height: details.bounds.height,
@@ -43,7 +43,10 @@ class SyncfusionCalendarWidget extends ConsumerWidget {
                 top: details.bounds.height * 0.05,
                 child: Text(
                   '${details.date.year}年 ${details.date.month}月',
-                  style: GoogleFonts.yuseiMagic(fontSize: 20),
+                  style: GoogleFonts.yuseiMagic(
+                    fontSize: 20,
+                    color: const Color(0xFFFFFFFF),
+                  ),
                 ),
               ),
             ],
@@ -65,9 +68,10 @@ class SyncfusionCalendarWidget extends ConsumerWidget {
           ),
 
           /// dayHeaderSettings
-          // dayHeaderSettings: const DayHeaderSettings(
-          //   /// todo 曜日を日本語に変更したい
-          // ),
+          dayHeaderSettings: const DayHeaderSettings(
+            /// todo 曜日を日本語に変更したい
+            dayFormat: '',
+          ),
         ),
       ),
     );

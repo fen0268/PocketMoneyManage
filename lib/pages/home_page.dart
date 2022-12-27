@@ -19,8 +19,8 @@ class HomePage extends ConsumerWidget {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.of(context).push<dynamic>(
-                  MaterialPageRoute<dynamic>(
+                Navigator.of(context).push<void>(
+                  MaterialPageRoute<void>(
                     builder: (context) => const TableCalendarWidget(),
                   ),
                 );

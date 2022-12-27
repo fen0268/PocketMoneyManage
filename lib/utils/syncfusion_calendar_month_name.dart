@@ -1,29 +1,29 @@
 /// 画像を使うときに使う
 String getMonthName(int month) {
   if (month == 01) {
-    return 'January';
+    return 'january';
   } else if (month == 02) {
-    return 'February';
+    return 'february';
   } else if (month == 03) {
-    return 'March';
+    return 'march';
   } else if (month == 04) {
-    return 'April';
+    return 'april';
   } else if (month == 05) {
-    return 'May';
+    return 'may';
   } else if (month == 06) {
-    return 'June';
+    return 'june';
   } else if (month == 07) {
-    return 'July';
+    return 'july';
   } else if (month == 08) {
-    return 'August';
+    return 'august';
   } else if (month == 09) {
-    return 'September';
+    return 'september';
   } else if (month == 10) {
-    return 'October';
+    return 'october';
   } else if (month == 11) {
-    return 'November';
+    return 'november';
   } else if (month == 12) {
-    return 'December';
+    return 'december';
   } else {
     return '';
   }
