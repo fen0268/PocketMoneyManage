@@ -10,7 +10,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final deviceHeight = MediaQuery.of(context).size.height;
+    // final deviceHeight = MediaQuery.of(context).size.height;
     final deviceWidth = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(

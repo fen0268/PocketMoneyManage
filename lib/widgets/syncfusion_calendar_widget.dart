@@ -11,7 +11,7 @@ class SyncfusionCalendarWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final deviceHeight = MediaQuery.of(context).size.height;
-    final deviceWidth = MediaQuery.of(context).size.width;
+    // final deviceWidth = MediaQuery.of(context).size.width;
     final calendarController = CalendarController();
 
     return SizedBox(
