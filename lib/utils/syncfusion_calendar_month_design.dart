@@ -7,9 +7,12 @@ Widget scheduleViewHeaderBuilder(
   ScheduleViewMonthHeaderDetails details,
 ) {
   final monthName = getMonthName(details.date.month);
+  CalendarController calendarController;
   return Stack(
     children: [
-      Center(
+      GestureDetector(
+        onDoubleTap: () {
+        },
         child: Image(
           image: const AssetImage('assets/January.jpg'),
           fit: BoxFit.cover,

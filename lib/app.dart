@@ -99,14 +99,6 @@ class App extends StatelessWidget {
         sliderTheme:
             SliderThemeData(overlayShape: SliderComponentShape.noOverlay),
       ),
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('ja'),
-      ],
-      locale: const Locale('ja'),
       home: const HomePage(),
     );
   }
