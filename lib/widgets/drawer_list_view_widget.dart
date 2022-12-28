@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../pages/member_add_page.dart';
+
 class DrawerListViewWidget extends ConsumerWidget {
   const DrawerListViewWidget({super.key});
 
@@ -19,7 +21,16 @@ class DrawerListViewWidget extends ConsumerWidget {
         Container(
           color: Colors.blue,
           height: deviceHeight * 0.1,
-          child: const Text('data'),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).push<void>(
+                MaterialPageRoute<void>(
+                  builder: (context) => const MemberAddPage(),
+                ),
+              );
+            },
+            child: const Text('メンバーの追加'),
+          ),
         ),
       ],
     );
