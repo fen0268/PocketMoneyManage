@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../widgets/drawer_list_view_widget.dart';
-import '../widgets/syncfusion_calendar_widget.dart';
+import '../widgets/sf_calendar/syncfusion_calendar_widget.dart';
 import '../widgets/table_calendar_widget.dart';
 
 class HomePage extends ConsumerWidget {
