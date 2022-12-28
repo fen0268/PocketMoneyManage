@@ -20,7 +20,7 @@ mixin _$Member {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get income => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MemberCopyWith<Member> get copyWith => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $MemberCopyWith<$Res> {
       {@Id(assignable: true) int id,
       String name,
       int income,
-      DateTime createdAt});
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -54,7 +54,7 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
     Object? id = null,
     Object? name = null,
     Object? income = null,
-    Object? createdAt = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -69,10 +69,10 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
           ? _value.income
           : income // ignore: cast_nullable_to_non_nullable
               as int,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -87,7 +87,7 @@ abstract class _$$_MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
       {@Id(assignable: true) int id,
       String name,
       int income,
-      DateTime createdAt});
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class __$$_MemberCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? income = null,
-    Object? createdAt = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$_Member(
       id: null == id
@@ -118,10 +118,10 @@ class __$$_MemberCopyWithImpl<$Res>
           ? _value.income
           : income // ignore: cast_nullable_to_non_nullable
               as int,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -134,7 +134,7 @@ class _$_Member implements _Member {
       {@Id(assignable: true) required this.id,
       this.name = '',
       this.income = 0,
-      required this.createdAt});
+      this.createdAt});
 
   @override
   @Id(assignable: true)
@@ -146,7 +146,7 @@ class _$_Member implements _Member {
   @JsonKey()
   final int income;
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   @override
   String toString() {
@@ -180,7 +180,7 @@ abstract class _Member implements Member {
       {@Id(assignable: true) required final int id,
       final String name,
       final int income,
-      required final DateTime createdAt}) = _$_Member;
+      final DateTime? createdAt}) = _$_Member;
 
   @override
   @Id(assignable: true)
@@ -190,7 +190,7 @@ abstract class _Member implements Member {
   @override
   int get income;
   @override
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_MemberCopyWith<_$_Member> get copyWith =>

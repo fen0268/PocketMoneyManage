@@ -10,6 +10,6 @@ class Member with _$Member {
     @Id(assignable: true) required int id,
     @Default('') String name,
     @Default(0) int income,
-    required DateTime createdAt,
+    DateTime? createdAt,
   }) = _Member;
 }

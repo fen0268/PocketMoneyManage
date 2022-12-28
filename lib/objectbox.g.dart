@@ -153,22 +153,24 @@ ModelDefinition getObjectBoxModel() {
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, nameOffset);
           fbb.addInt64(2, object.income);
-          fbb.addInt64(3, object.createdAt.millisecondsSinceEpoch);
+          fbb.addInt64(3, object.createdAt?.millisecondsSinceEpoch);
           fbb.finish(fbb.endTable());
           return object.id;
         },
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
+          final createdAtValue =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 10);
           final object = Member(
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
               name: const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 6, ''),
               income:
                   const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0),
-              createdAt: DateTime.fromMillisecondsSinceEpoch(
-                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0)));
+              createdAt: createdAtValue == null
+                  ? null
+                  : DateTime.fromMillisecondsSinceEpoch(createdAtValue));
 
           return object;
         }),
@@ -194,8 +196,8 @@ ModelDefinition getObjectBoxModel() {
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, titleOffset);
           fbb.addInt64(2, object.price);
-          fbb.addInt64(3, object.doingAt.millisecondsSinceEpoch);
-          fbb.addInt64(4, object.createdAt.millisecondsSinceEpoch);
+          fbb.addInt64(3, object.doingAt?.millisecondsSinceEpoch);
+          fbb.addInt64(4, object.createdAt?.millisecondsSinceEpoch);
           fbb.addBool(5, object.isDone);
           fbb.addOffset(6, assigneeMemberIdOffset);
           fbb.addInt64(7, object.scheduleType);
@@ -205,16 +207,21 @@ ModelDefinition getObjectBoxModel() {
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-
+          final doingAtValue =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 10);
+          final createdAtValue =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 12);
           final object = Work(
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
               title: const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 6, ''),
               price: const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0),
-              doingAt: DateTime.fromMillisecondsSinceEpoch(
-                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0)),
-              createdAt: DateTime.fromMillisecondsSinceEpoch(
-                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0)),
+              doingAt: doingAtValue == null
+                  ? null
+                  : DateTime.fromMillisecondsSinceEpoch(doingAtValue),
+              createdAt: createdAtValue == null
+                  ? null
+                  : DateTime.fromMillisecondsSinceEpoch(createdAtValue),
               isDone: const fb.BoolReader()
                   .vTableGet(buffer, rootOffset, 14, false),
               assigneeMemberId: const fb.StringReader(asciiOptimization: true)

@@ -20,8 +20,8 @@ mixin _$Work {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
-  DateTime get doingAt => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime? get doingAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   bool get isDone => throw _privateConstructorUsedError;
   String get assigneeMemberId => throw _privateConstructorUsedError;
   int get scheduleType => throw _privateConstructorUsedError;
@@ -39,8 +39,8 @@ abstract class $WorkCopyWith<$Res> {
       {@Id(assignable: true) int id,
       String title,
       int price,
-      DateTime doingAt,
-      DateTime createdAt,
+      DateTime? doingAt,
+      DateTime? createdAt,
       bool isDone,
       String assigneeMemberId,
       int scheduleType});
@@ -62,8 +62,8 @@ class _$WorkCopyWithImpl<$Res, $Val extends Work>
     Object? id = null,
     Object? title = null,
     Object? price = null,
-    Object? doingAt = null,
-    Object? createdAt = null,
+    Object? doingAt = freezed,
+    Object? createdAt = freezed,
     Object? isDone = null,
     Object? assigneeMemberId = null,
     Object? scheduleType = null,
@@ -81,14 +81,14 @@ class _$WorkCopyWithImpl<$Res, $Val extends Work>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
-      doingAt: null == doingAt
+      doingAt: freezed == doingAt
           ? _value.doingAt
           : doingAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      createdAt: null == createdAt
+              as DateTime?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       isDone: null == isDone
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
@@ -115,8 +115,8 @@ abstract class _$$_WorkCopyWith<$Res> implements $WorkCopyWith<$Res> {
       {@Id(assignable: true) int id,
       String title,
       int price,
-      DateTime doingAt,
-      DateTime createdAt,
+      DateTime? doingAt,
+      DateTime? createdAt,
       bool isDone,
       String assigneeMemberId,
       int scheduleType});
@@ -134,8 +134,8 @@ class __$$_WorkCopyWithImpl<$Res> extends _$WorkCopyWithImpl<$Res, _$_Work>
     Object? id = null,
     Object? title = null,
     Object? price = null,
-    Object? doingAt = null,
-    Object? createdAt = null,
+    Object? doingAt = freezed,
+    Object? createdAt = freezed,
     Object? isDone = null,
     Object? assigneeMemberId = null,
     Object? scheduleType = null,
@@ -153,14 +153,14 @@ class __$$_WorkCopyWithImpl<$Res> extends _$WorkCopyWithImpl<$Res, _$_Work>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
-      doingAt: null == doingAt
+      doingAt: freezed == doingAt
           ? _value.doingAt
           : doingAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      createdAt: null == createdAt
+              as DateTime?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       isDone: null == isDone
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
@@ -185,8 +185,8 @@ class _$_Work implements _Work {
       {@Id(assignable: true) required this.id,
       this.title = '',
       this.price = 0,
-      required this.doingAt,
-      required this.createdAt,
+      this.doingAt,
+      this.createdAt,
       this.isDone = false,
       this.assigneeMemberId = '',
       this.scheduleType = 0});
@@ -201,9 +201,9 @@ class _$_Work implements _Work {
   @JsonKey()
   final int price;
   @override
-  final DateTime doingAt;
+  final DateTime? doingAt;
   @override
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @override
   @JsonKey()
   final bool isDone;
@@ -253,8 +253,8 @@ abstract class _Work implements Work {
       {@Id(assignable: true) required final int id,
       final String title,
       final int price,
-      required final DateTime doingAt,
-      required final DateTime createdAt,
+      final DateTime? doingAt,
+      final DateTime? createdAt,
       final bool isDone,
       final String assigneeMemberId,
       final int scheduleType}) = _$_Work;
@@ -267,9 +267,9 @@ abstract class _Work implements Work {
   @override
   int get price;
   @override
-  DateTime get doingAt;
+  DateTime? get doingAt;
   @override
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @override
   bool get isDone;
   @override
