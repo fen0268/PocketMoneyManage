@@ -20,7 +20,7 @@ class HomePage extends ConsumerWidget {
             IconButton(
               onPressed: () {
                 Navigator.of(context).push<void>(
-                  MaterialPageRoute<void>(
+                  MaterialPageRoute(
                     builder: (context) => const TableCalendarWidget(),
                   ),
                 );
