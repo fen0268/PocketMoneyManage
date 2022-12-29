@@ -11,7 +11,7 @@ class TableCalendarWidget extends ConsumerWidget {
       appBar: AppBar(),
       body: Container(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TableCalendar<DateTime>(
+        child: TableCalendar<void>(
           firstDay: DateTime(2022),
           lastDay: DateTime(2100),
           focusedDay: DateTime.now(),

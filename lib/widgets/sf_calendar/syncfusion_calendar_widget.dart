@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
+import '../../features/theme_mode_provider.dart';
 import '../../utils/syncfusion_calendar_month_name.dart';
 
 class SyncfusionCalendarWidget extends ConsumerWidget {
@@ -13,6 +14,7 @@ class SyncfusionCalendarWidget extends ConsumerWidget {
     final deviceHeight = MediaQuery.of(context).size.height;
     // final deviceWidth = MediaQuery.of(context).size.width;
     final calendarController = CalendarController();
+    final themeMode = ref.watch(themeModeProvider.notifier);
 
     return SizedBox(
       height: deviceHeight,
