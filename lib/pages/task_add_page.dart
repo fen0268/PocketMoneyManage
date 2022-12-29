@@ -17,16 +17,23 @@ class TaskAddPage extends ConsumerWidget {
 
     return Column(
       children: [
-        SizedBox(
+        /// Appbar
+        Container(
+          padding: EdgeInsets.zero,
           height: deviceHeight * 0.07,
           child: AppBar(
-            leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(Icons.close),
+            /// キャンセルボタン
+            leading: Container(
+              padding: EdgeInsets.zero,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: const Icon(Icons.close),
+              ),
             ),
             actions: [
+              /// 追加ボタン
               Container(
                 padding: const EdgeInsets.only(
                   top: 8,
@@ -52,6 +59,8 @@ class TaskAddPage extends ConsumerWidget {
             ),
           ),
         ),
+
+        /// 家事名
         Container(
           padding: const EdgeInsets.only(top: 10, left: 50, right: 5),
           child: TextFormField(
@@ -66,29 +75,52 @@ class TaskAddPage extends ConsumerWidget {
           ),
         ),
         const Divider(),
+
+        /// 日付選択
         Container(
           padding: const EdgeInsets.only(top: 5, left: 15, right: 5),
           child: Expanded(
-            child: ExpansionTile(
-              leading: Icon(
-                Icons.schedule,
-                color: Colors.grey.shade500,
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                dividerColor: Colors.transparent,
               ),
-              title: Text(outputFormat.format(data.selectedDate!)),
-              children: [
-                TableCalendar<void>(
-                  focusedDay: data.selectedDate!,
-                  firstDay: DateTime(2020),
-                  lastDay: DateTime(2120),
-                  headerVisible: false,
-                  onDaySelected: (selectedDay, focusedDay) {
-                    notifier.selectDate(selectedDay);
-                  },
-                )
-              ],
+              child: ExpansionTile(
+                leading: Icon(
+                  Icons.schedule,
+                  color: Colors.grey.shade500,
+                ),
+                title: Text(
+                  outputFormat.format(data.selectedDate!),
+                ),
+                children: [
+                  TableCalendar<void>(
+                    focusedDay: data.selectedDate!,
+                    currentDay: data.selectedDate,
+                    firstDay: DateTime(2020),
+                    lastDay: DateTime(2120),
+                    headerVisible: false,
+                    onDaySelected: (selectedDay, focusedDay) {
+                      notifier.selectDate(selectedDay);
+                    },
+                  )
+                ],
+              ),
             ),
           ),
-        )
+        ),
+
+        /// 詳細オプション
+        Container(
+          padding: const EdgeInsets.only(left: 5, right: 5),
+          child: TextButton(
+            onPressed: () {},
+            child: const Text(
+              '詳細オプション',
+              style: TextStyle(color: Colors.grey),
+            ),
+          ),
+        ),
+        const Divider(),
       ],
     );
   }
