@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class TaskAddPage extends ConsumerWidget {
   const TaskAddPage({super.key});
@@ -57,7 +58,40 @@ class TaskAddPage extends ConsumerWidget {
           ),
         ),
         const Divider(),
-        Container()
+        Container(
+          padding: const EdgeInsets.only(top: 5, left: 15, right: 5),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                children: [
+                  SizedBox(
+                    height: deviceHeight * 0.025,
+                  ),
+                  Icon(
+                    Icons.schedule,
+                    color: Colors.grey.shade500,
+                  ),
+                ],
+              ),
+              Expanded(
+                child: ExpansionTile(
+                  onExpansionChanged: (changed) {
+                    //開いた時の処理を書ける
+                  },
+                  title: const Text('title'),
+                  children: [
+                    TableCalendar<void>(
+                      focusedDay: DateTime.now(),
+                      firstDay: DateTime(2020),
+                      lastDay: DateTime(2120),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        )
       ],
     );
   }
