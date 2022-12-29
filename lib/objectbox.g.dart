@@ -15,7 +15,7 @@ import 'package:objectbox/objectbox.dart';
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'models/member/member.dart';
-import 'models/work/work.dart';
+import 'models/task/task.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -50,48 +50,48 @@ final _entities = <ModelEntity>[
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(2, 6658949043874423718),
-      name: 'Work',
-      lastPropertyId: const IdUid(8, 7236096820126950697),
+      id: const IdUid(3, 2301546402162453040),
+      name: 'Task',
+      lastPropertyId: const IdUid(8, 1044421159773595788),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 6574474039561994137),
+            id: const IdUid(1, 6127879268817859532),
             name: 'id',
             type: 6,
             flags: 129),
         ModelProperty(
-            id: const IdUid(2, 3535154839045821906),
+            id: const IdUid(2, 8596238423895013521),
             name: 'title',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 8826949900487606479),
+            id: const IdUid(3, 7931493209417825603),
             name: 'price',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 1109916939477540401),
+            id: const IdUid(4, 1345107145900651316),
             name: 'doingAt',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 2291478109814787585),
+            id: const IdUid(5, 9065897901600843995),
             name: 'createdAt',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 4931774163276701685),
+            id: const IdUid(6, 6706119728409187210),
             name: 'isDone',
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 6582913146019921924),
+            id: const IdUid(7, 4294515498366449392),
             name: 'assigneeMemberId',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 7236096820126950697),
+            id: const IdUid(8, 1044421159773595788),
             name: 'scheduleType',
             type: 6,
             flags: 0)
@@ -120,13 +120,22 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(2, 6658949043874423718),
+      lastEntityId: const IdUid(3, 2301546402162453040),
       lastIndexId: const IdUid(0, 0),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
-      retiredEntityUids: const [],
+      retiredEntityUids: const [6658949043874423718],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredPropertyUids: const [
+        6574474039561994137,
+        3535154839045821906,
+        8826949900487606479,
+        1109916939477540401,
+        2291478109814787585,
+        4931774163276701685,
+        6582913146019921924,
+        7236096820126950697
+      ],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -174,21 +183,21 @@ ModelDefinition getObjectBoxModel() {
 
           return object;
         }),
-    Work: EntityDefinition<Work>(
+    Task: EntityDefinition<Task>(
         model: _entities[1],
-        toOneRelations: (Work object) => [],
-        toManyRelations: (Work object) => {},
-        getId: (Work object) => object.id,
-        setId: (Work object, int id) {
+        toOneRelations: (Task object) => [],
+        toManyRelations: (Task object) => {},
+        getId: (Task object) => object.id,
+        setId: (Task object, int id) {
           if (object.id != id) {
-            throw ArgumentError('Field Work.id is read-only '
+            throw ArgumentError('Field Task.id is read-only '
                 '(final or getter-only) and it was declared to be self-assigned. '
                 'However, the currently inserted object (.id=${object.id}) '
                 "doesn't match the inserted ID (ID $id). "
                 'You must assign an ID before calling [box.put()].');
           }
         },
-        objectToFB: (Work object, fb.Builder fbb) {
+        objectToFB: (Task object, fb.Builder fbb) {
           final titleOffset = fbb.writeString(object.title);
           final assigneeMemberIdOffset =
               fbb.writeString(object.assigneeMemberId);
@@ -211,7 +220,7 @@ ModelDefinition getObjectBoxModel() {
               const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 10);
           final createdAtValue =
               const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 12);
-          final object = Work(
+          final object = Task(
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
               title: const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 6, ''),
@@ -253,32 +262,32 @@ class Member_ {
       QueryIntegerProperty<Member>(_entities[0].properties[3]);
 }
 
-/// [Work] entity fields to define ObjectBox queries.
-class Work_ {
-  /// see [Work.id]
-  static final id = QueryIntegerProperty<Work>(_entities[1].properties[0]);
+/// [Task] entity fields to define ObjectBox queries.
+class Task_ {
+  /// see [Task.id]
+  static final id = QueryIntegerProperty<Task>(_entities[1].properties[0]);
 
-  /// see [Work.title]
-  static final title = QueryStringProperty<Work>(_entities[1].properties[1]);
+  /// see [Task.title]
+  static final title = QueryStringProperty<Task>(_entities[1].properties[1]);
 
-  /// see [Work.price]
-  static final price = QueryIntegerProperty<Work>(_entities[1].properties[2]);
+  /// see [Task.price]
+  static final price = QueryIntegerProperty<Task>(_entities[1].properties[2]);
 
-  /// see [Work.doingAt]
-  static final doingAt = QueryIntegerProperty<Work>(_entities[1].properties[3]);
+  /// see [Task.doingAt]
+  static final doingAt = QueryIntegerProperty<Task>(_entities[1].properties[3]);
 
-  /// see [Work.createdAt]
+  /// see [Task.createdAt]
   static final createdAt =
-      QueryIntegerProperty<Work>(_entities[1].properties[4]);
+      QueryIntegerProperty<Task>(_entities[1].properties[4]);
 
-  /// see [Work.isDone]
-  static final isDone = QueryBooleanProperty<Work>(_entities[1].properties[5]);
+  /// see [Task.isDone]
+  static final isDone = QueryBooleanProperty<Task>(_entities[1].properties[5]);
 
-  /// see [Work.assigneeMemberId]
+  /// see [Task.assigneeMemberId]
   static final assigneeMemberId =
-      QueryStringProperty<Work>(_entities[1].properties[6]);
+      QueryStringProperty<Task>(_entities[1].properties[6]);
 
-  /// see [Work.scheduleType]
+  /// see [Task.scheduleType]
   static final scheduleType =
-      QueryIntegerProperty<Work>(_entities[1].properties[7]);
+      QueryIntegerProperty<Task>(_entities[1].properties[7]);
 }

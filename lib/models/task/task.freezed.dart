@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'work.dart';
+part of 'task.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$Work {
+mixin _$Task {
   @Id(assignable: true)
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
@@ -27,13 +27,13 @@ mixin _$Work {
   int get scheduleType => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $WorkCopyWith<Work> get copyWith => throw _privateConstructorUsedError;
+  $TaskCopyWith<Task> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WorkCopyWith<$Res> {
-  factory $WorkCopyWith(Work value, $Res Function(Work) then) =
-      _$WorkCopyWithImpl<$Res, Work>;
+abstract class $TaskCopyWith<$Res> {
+  factory $TaskCopyWith(Task value, $Res Function(Task) then) =
+      _$TaskCopyWithImpl<$Res, Task>;
   @useResult
   $Res call(
       {@Id(assignable: true) int id,
@@ -47,9 +47,9 @@ abstract class $WorkCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$WorkCopyWithImpl<$Res, $Val extends Work>
-    implements $WorkCopyWith<$Res> {
-  _$WorkCopyWithImpl(this._value, this._then);
+class _$TaskCopyWithImpl<$Res, $Val extends Task>
+    implements $TaskCopyWith<$Res> {
+  _$TaskCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -106,9 +106,9 @@ class _$WorkCopyWithImpl<$Res, $Val extends Work>
 }
 
 /// @nodoc
-abstract class _$$_WorkCopyWith<$Res> implements $WorkCopyWith<$Res> {
-  factory _$$_WorkCopyWith(_$_Work value, $Res Function(_$_Work) then) =
-      __$$_WorkCopyWithImpl<$Res>;
+abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
+  factory _$$_TaskCopyWith(_$_Task value, $Res Function(_$_Task) then) =
+      __$$_TaskCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -123,9 +123,9 @@ abstract class _$$_WorkCopyWith<$Res> implements $WorkCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_WorkCopyWithImpl<$Res> extends _$WorkCopyWithImpl<$Res, _$_Work>
-    implements _$$_WorkCopyWith<$Res> {
-  __$$_WorkCopyWithImpl(_$_Work _value, $Res Function(_$_Work) _then)
+class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
+    implements _$$_TaskCopyWith<$Res> {
+  __$$_TaskCopyWithImpl(_$_Task _value, $Res Function(_$_Task) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -140,7 +140,7 @@ class __$$_WorkCopyWithImpl<$Res> extends _$WorkCopyWithImpl<$Res, _$_Work>
     Object? assigneeMemberId = null,
     Object? scheduleType = null,
   }) {
-    return _then(_$_Work(
+    return _then(_$_Task(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -179,9 +179,9 @@ class __$$_WorkCopyWithImpl<$Res> extends _$WorkCopyWithImpl<$Res, _$_Work>
 
 /// @nodoc
 
-@Entity(realClass: Work)
-class _$_Work implements _Work {
-  _$_Work(
+@Entity(realClass: Task)
+class _$_Task implements _Task {
+  _$_Task(
       {@Id(assignable: true) required this.id,
       this.title = '',
       this.price = 0,
@@ -216,14 +216,14 @@ class _$_Work implements _Work {
 
   @override
   String toString() {
-    return 'Work(id: $id, title: $title, price: $price, doingAt: $doingAt, createdAt: $createdAt, isDone: $isDone, assigneeMemberId: $assigneeMemberId, scheduleType: $scheduleType)';
+    return 'Task(id: $id, title: $title, price: $price, doingAt: $doingAt, createdAt: $createdAt, isDone: $isDone, assigneeMemberId: $assigneeMemberId, scheduleType: $scheduleType)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Work &&
+            other is _$_Task &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.price, price) || other.price == price) &&
@@ -244,12 +244,12 @@ class _$_Work implements _Work {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WorkCopyWith<_$_Work> get copyWith =>
-      __$$_WorkCopyWithImpl<_$_Work>(this, _$identity);
+  _$$_TaskCopyWith<_$_Task> get copyWith =>
+      __$$_TaskCopyWithImpl<_$_Task>(this, _$identity);
 }
 
-abstract class _Work implements Work {
-  factory _Work(
+abstract class _Task implements Task {
+  factory _Task(
       {@Id(assignable: true) required final int id,
       final String title,
       final int price,
@@ -257,7 +257,7 @@ abstract class _Work implements Work {
       final DateTime? createdAt,
       final bool isDone,
       final String assigneeMemberId,
-      final int scheduleType}) = _$_Work;
+      final int scheduleType}) = _$_Task;
 
   @override
   @Id(assignable: true)
@@ -278,5 +278,5 @@ abstract class _Work implements Work {
   int get scheduleType;
   @override
   @JsonKey(ignore: true)
-  _$$_WorkCopyWith<_$_Work> get copyWith => throw _privateConstructorUsedError;
+  _$$_TaskCopyWith<_$_Task> get copyWith => throw _privateConstructorUsedError;
 }
