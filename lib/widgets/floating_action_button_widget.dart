@@ -26,8 +26,11 @@ class FloatingActionButtonWidget extends ConsumerWidget {
           onTap: () => showModalBottomSheet<void>(
             context: context,
             isScrollControlled: true,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
             ),
             builder: (context) => SizedBox(
               height: deviceHeight * 0.90,
