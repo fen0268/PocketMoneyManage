@@ -21,6 +21,17 @@ class WorkNotifier extends StateNotifier<Task> {
     final fetchTaskBoxId =
         taskBox.getAll().isEmpty ? 0 : taskBox.getAll().last.id;
 
-    final newTask = Task(id: fetchTaskBoxId + 1, title: titleController.text, price: price,);
+    final newTask = Task(
+      id: fetchTaskBoxId + 1,
+      title: titleController.text,
+      price: price,
+    );
+
+    state = state.copyWith(
+      id: newTask.id,
+      title: newTask.title,
+      price: price,
+      createdAt: DateTime.now(),
+    );
   }
 }
