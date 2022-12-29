@@ -10,8 +10,10 @@ class FloatingActionButtonWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final deviceHeight = MediaQuery.of(context).size.height;
     return SpeedDial(
       icon: Icons.share,
+      foregroundColor: Colors.grey.shade300,
       backgroundColor: Colors.pink.shade400,
       children: [
         SpeedDialChild(
@@ -21,13 +23,17 @@ class FloatingActionButtonWidget extends ConsumerWidget {
           ),
           label: '家事を追加',
           backgroundColor: Colors.grey.shade300,
-          onTap: () {
-            Navigator.of(context).push<void>(
-              MaterialPageRoute(
-                builder: (context) => const TaskAddPage(),
-              ),
-            );
-          },
+          onTap: () => showModalBottomSheet<void>(
+            context: context,
+            isScrollControlled: true,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            builder: (context) => SizedBox(
+              height: deviceHeight * 0.90,
+              child: const TaskAddPage(),
+            ),
+          ),
         ),
         SpeedDialChild(
           child: Icon(
