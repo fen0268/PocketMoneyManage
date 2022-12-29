@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
+import '../features/date_controller.dart';
 import '../pages/member_add_page.dart';
 import '../pages/task_add_page.dart';
 
@@ -11,6 +12,7 @@ class FloatingActionButtonWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final deviceHeight = MediaQuery.of(context).size.height;
+    final dateNotifier = ref.watch(dateNotifierProvider.notifier);
     return SpeedDial(
       icon: Icons.share,
       foregroundColor: Colors.grey.shade300,
@@ -23,20 +25,23 @@ class FloatingActionButtonWidget extends ConsumerWidget {
           ),
           label: '家事を追加',
           backgroundColor: Colors.grey.shade300,
-          onTap: () => showModalBottomSheet<void>(
-            context: context,
-            isScrollControlled: true,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
+          onTap: () {
+            dateNotifier.initDateTime();
+            showModalBottomSheet<void>(
+              context: context,
+              isScrollControlled: true,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
               ),
-            ),
-            builder: (context) => SizedBox(
-              height: deviceHeight * 0.90,
-              child: const TaskAddPage(),
-            ),
-          ),
+              builder: (context) => SizedBox(
+                height: deviceHeight * 0.90,
+                child: const TaskAddPage(),
+              ),
+            );
+          },
         ),
         SpeedDialChild(
           child: Icon(

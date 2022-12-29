@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import '../../features/theme_mode_provider.dart';
@@ -27,6 +28,7 @@ class SyncfusionCalendarWidget extends ConsumerWidget {
         /// scheduleViewMonthHeaderBuilder
         scheduleViewMonthHeaderBuilder: (buildContext, details) {
           final monthName = getMonthName(details.date.month);
+          final outputFormat = DateFormat('yyyy年 M月');
           return Stack(
             children: [
               GestureDetector(
@@ -44,7 +46,7 @@ class SyncfusionCalendarWidget extends ConsumerWidget {
                 left: details.bounds.width * 0.05,
                 top: details.bounds.height * 0.05,
                 child: Text(
-                  '${details.date.year}年 ${details.date.month}月',
+                  outputFormat.format(details.date),
                   style: GoogleFonts.yuseiMagic(
                     fontSize: 20,
                     color: const Color(0xFFFFFFFF),
