@@ -10,7 +10,8 @@ class TaskAddPage extends ConsumerWidget {
     final deviceHeight = MediaQuery.of(context).size.height;
     return Column(
       children: [
-        Container(
+        SizedBox(
+          height: deviceHeight * 0.07,
           child: AppBar(
             leading: IconButton(
               onPressed: () {
@@ -21,10 +22,10 @@ class TaskAddPage extends ConsumerWidget {
             actions: [
               Container(
                 padding: const EdgeInsets.only(
-                  top: 10,
-                  left: 7,
-                  right: 7,
-                  bottom: 10,
+                  top: 8,
+                  left: 5,
+                  right: 10,
+                  bottom: 8,
                 ),
                 child: ElevatedButton(
                   onPressed: () {},
