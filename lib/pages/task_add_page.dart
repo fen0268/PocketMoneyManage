@@ -20,7 +20,6 @@ class TaskAddPage extends ConsumerWidget {
     final deviceHeight = MediaQuery.of(context).size.height;
     final outputFormat = DateFormat('yyyy年 M月 d日');
     final memberBox = store.box<Member>();
-    final memberAll = memberBox.getAll();
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -169,13 +168,29 @@ class TaskAddPage extends ConsumerWidget {
                     title: taskNotifier.isSelectedMember
                         ? Text(taskNotifier.assigneeMember!.name)
                         : const Text('メンバーを選択'),
-                        children: [
-                          
-                        ],
+                    children: memberBox
+                        .getAll()
+                        .map(
+                          (e) => GestureDetector(
+                            onTap: () {
+                              taskNotifier.selectMember(e);
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.only(left: 56),
+                              child: ListTile(
+                                title: Text(
+                                  e.name,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                        .toList(),
                   ),
                 ),
               ),
-            )
+            ),
+            const Divider(),
           ],
         ),
       ),

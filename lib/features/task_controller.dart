@@ -22,6 +22,8 @@ class TaskNotifier extends StateNotifier<Task> {
   @override
   void dispose() {
     titleController.dispose();
+    priceController.dispose();
+    isSelectedMember = false;
     super.dispose();
   }
 
@@ -53,6 +55,7 @@ class TaskNotifier extends StateNotifier<Task> {
 
   void selectMember(Member member) {
     isSelectedMember = true;
+    assigneeMember = member;
     assigneeMemberId = member.id;
     state = state.copyWith(assigneeMemberId: assigneeMemberId);
   }

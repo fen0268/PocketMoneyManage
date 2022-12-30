@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 import '../features/date_controller.dart';
+import '../features/task_controller.dart';
 import '../pages/member_add_page.dart';
 import '../pages/task_add_page.dart';
 
@@ -13,6 +14,7 @@ class FloatingActionButtonWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final deviceHeight = MediaQuery.of(context).size.height;
     final dateNotifier = ref.watch(dateNotifierProvider.notifier);
+    final taskNotifier = ref.watch(taskNotifierProvider.notifier);
     return SpeedDial(
       icon: Icons.share,
       foregroundColor: Colors.grey.shade300,
@@ -27,6 +29,9 @@ class FloatingActionButtonWidget extends ConsumerWidget {
           backgroundColor: Colors.grey.shade300,
           onTap: () {
             dateNotifier.initDateTime();
+            taskNotifier
+              ..isSelectedMember = false
+              ..assigneeMember = null;
             showModalBottomSheet<void>(
               context: context,
               isScrollControlled: true,
