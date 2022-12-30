@@ -5,6 +5,8 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../features/date_controller.dart';
 import '../features/task_controller.dart';
+import '../main.dart';
+import '../models/member/member.dart';
 
 class TaskAddPage extends ConsumerWidget {
   const TaskAddPage({super.key});
@@ -17,6 +19,8 @@ class TaskAddPage extends ConsumerWidget {
     final taskNotifier = ref.watch(taskNotifierProvider.notifier);
     final deviceHeight = MediaQuery.of(context).size.height;
     final outputFormat = DateFormat('yyyy年 M月 d日');
+    final memberBox = store.box<Member>();
+    final memberAll = memberBox.getAll();
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -148,6 +152,30 @@ class TaskAddPage extends ConsumerWidget {
               ),
             ),
             const Divider(),
+
+            /// メンバー選択
+            Container(
+              padding: const EdgeInsets.only(left: 15, right: 5),
+              child: Expanded(
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    dividerColor: Colors.transparent,
+                  ),
+                  child: ExpansionTile(
+                    leading: Icon(
+                      Icons.people,
+                      color: Colors.grey.shade500,
+                    ),
+                    title: taskNotifier.isSelectedMember
+                        ? Text(taskNotifier.assigneeMember!.name)
+                        : const Text('メンバーを選択'),
+                        children: [
+                          
+                        ],
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

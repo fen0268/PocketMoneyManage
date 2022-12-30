@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../main.dart';
+import '../models/member/member.dart';
 import '../models/task/task.dart';
 
 final taskNotifierProvider = StateNotifierProvider<TaskNotifier, Task>(
@@ -11,8 +12,12 @@ final taskNotifierProvider = StateNotifierProvider<TaskNotifier, Task>(
 class TaskNotifier extends StateNotifier<Task> {
   TaskNotifier() : super(Task(id: 0));
   final taskBox = store.box<Task>();
+  final memberBox = store.box<Member>();
   final titleController = TextEditingController();
   final priceController = TextEditingController();
+  Member? assigneeMember;
+  int? assigneeMemberId;
+  bool isSelectedMember = false;
 
   @override
   void dispose() {
@@ -30,14 +35,25 @@ class TaskNotifier extends StateNotifier<Task> {
       title: titleController.text,
       price: price,
       doingAt: doingAt,
-      isDone: false,
+      assigneeMemberId: assigneeMember!.id,
     );
 
     state = state.copyWith(
       id: newTask.id,
       title: newTask.title,
-      price: price,
+      price: newTask.price,
       createdAt: DateTime.now(),
+      doingAt: newTask.doingAt,
+      isDone: false,
+      assigneeMemberId: newTask.assigneeMemberId,
     );
+
+    taskBox.put(state);
+  }
+
+  void selectMember(Member member) {
+    isSelectedMember = true;
+    assigneeMemberId = member.id;
+    state = state.copyWith(assigneeMemberId: assigneeMemberId);
   }
 }

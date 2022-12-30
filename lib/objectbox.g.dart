@@ -88,7 +88,7 @@ final _entities = <ModelEntity>[
         ModelProperty(
             id: const IdUid(7, 4294515498366449392),
             name: 'assigneeMemberId',
-            type: 9,
+            type: 6,
             flags: 0),
         ModelProperty(
             id: const IdUid(8, 1044421159773595788),
@@ -204,8 +204,6 @@ ModelDefinition getObjectBoxModel() {
         },
         objectToFB: (Task object, fb.Builder fbb) {
           final titleOffset = fbb.writeString(object.title);
-          final assigneeMemberIdOffset =
-              fbb.writeString(object.assigneeMemberId);
           fbb.startTable(10);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, titleOffset);
@@ -213,7 +211,7 @@ ModelDefinition getObjectBoxModel() {
           fbb.addInt64(3, object.doingAt?.millisecondsSinceEpoch);
           fbb.addInt64(4, object.createdAt?.millisecondsSinceEpoch);
           fbb.addBool(5, object.isDone);
-          fbb.addOffset(6, assigneeMemberIdOffset);
+          fbb.addInt64(6, object.assigneeMemberId);
           fbb.addInt64(7, object.scheduleType);
           fbb.addInt64(8, object.taskNum);
           fbb.finish(fbb.endTable());
@@ -239,8 +237,8 @@ ModelDefinition getObjectBoxModel() {
                   : DateTime.fromMillisecondsSinceEpoch(createdAtValue),
               isDone: const fb.BoolReader()
                   .vTableGet(buffer, rootOffset, 14, false),
-              assigneeMemberId: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 16, ''),
+              assigneeMemberId: const fb.Int64Reader()
+                  .vTableGetNullable(buffer, rootOffset, 16),
               scheduleType:
                   const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0),
               taskNum:
@@ -293,7 +291,7 @@ class Task_ {
 
   /// see [Task.assigneeMemberId]
   static final assigneeMemberId =
-      QueryStringProperty<Task>(_entities[1].properties[6]);
+      QueryIntegerProperty<Task>(_entities[1].properties[6]);
 
   /// see [Task.scheduleType]
   static final scheduleType =

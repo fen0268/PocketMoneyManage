@@ -13,7 +13,7 @@ class Task with _$Task {
     DateTime? doingAt,
     DateTime? createdAt,
     @Default(false) bool isDone,
-    @Default('') String assigneeMemberId,
+    int? assigneeMemberId,
     @Default(0) int scheduleType,
     @Default(0) int taskNum,
   }) = _Task;

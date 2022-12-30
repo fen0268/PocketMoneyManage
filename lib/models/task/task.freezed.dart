@@ -23,7 +23,7 @@ mixin _$Task {
   DateTime? get doingAt => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
   bool get isDone => throw _privateConstructorUsedError;
-  String get assigneeMemberId => throw _privateConstructorUsedError;
+  int? get assigneeMemberId => throw _privateConstructorUsedError;
   int get scheduleType => throw _privateConstructorUsedError;
   int get taskNum => throw _privateConstructorUsedError;
 
@@ -43,7 +43,7 @@ abstract class $TaskCopyWith<$Res> {
       DateTime? doingAt,
       DateTime? createdAt,
       bool isDone,
-      String assigneeMemberId,
+      int? assigneeMemberId,
       int scheduleType,
       int taskNum});
 }
@@ -67,7 +67,7 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
     Object? doingAt = freezed,
     Object? createdAt = freezed,
     Object? isDone = null,
-    Object? assigneeMemberId = null,
+    Object? assigneeMemberId = freezed,
     Object? scheduleType = null,
     Object? taskNum = null,
   }) {
@@ -96,10 +96,10 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
               as bool,
-      assigneeMemberId: null == assigneeMemberId
+      assigneeMemberId: freezed == assigneeMemberId
           ? _value.assigneeMemberId
           : assigneeMemberId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       scheduleType: null == scheduleType
           ? _value.scheduleType
           : scheduleType // ignore: cast_nullable_to_non_nullable
@@ -125,7 +125,7 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
       DateTime? doingAt,
       DateTime? createdAt,
       bool isDone,
-      String assigneeMemberId,
+      int? assigneeMemberId,
       int scheduleType,
       int taskNum});
 }
@@ -145,7 +145,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
     Object? doingAt = freezed,
     Object? createdAt = freezed,
     Object? isDone = null,
-    Object? assigneeMemberId = null,
+    Object? assigneeMemberId = freezed,
     Object? scheduleType = null,
     Object? taskNum = null,
   }) {
@@ -174,10 +174,10 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
               as bool,
-      assigneeMemberId: null == assigneeMemberId
+      assigneeMemberId: freezed == assigneeMemberId
           ? _value.assigneeMemberId
           : assigneeMemberId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       scheduleType: null == scheduleType
           ? _value.scheduleType
           : scheduleType // ignore: cast_nullable_to_non_nullable
@@ -201,7 +201,7 @@ class _$_Task implements _Task {
       this.doingAt,
       this.createdAt,
       this.isDone = false,
-      this.assigneeMemberId = '',
+      this.assigneeMemberId,
       this.scheduleType = 0,
       this.taskNum = 0});
 
@@ -222,8 +222,7 @@ class _$_Task implements _Task {
   @JsonKey()
   final bool isDone;
   @override
-  @JsonKey()
-  final String assigneeMemberId;
+  final int? assigneeMemberId;
   @override
   @JsonKey()
   final int scheduleType;
@@ -274,7 +273,7 @@ abstract class _Task implements Task {
       final DateTime? doingAt,
       final DateTime? createdAt,
       final bool isDone,
-      final String assigneeMemberId,
+      final int? assigneeMemberId,
       final int scheduleType,
       final int taskNum}) = _$_Task;
 
@@ -292,7 +291,7 @@ abstract class _Task implements Task {
   @override
   bool get isDone;
   @override
-  String get assigneeMemberId;
+  int? get assigneeMemberId;
   @override
   int get scheduleType;
   @override
