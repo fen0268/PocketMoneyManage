@@ -52,7 +52,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(3, 2301546402162453040),
       name: 'Task',
-      lastPropertyId: const IdUid(8, 1044421159773595788),
+      lastPropertyId: const IdUid(9, 4349745911690109601),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -93,6 +93,11 @@ final _entities = <ModelEntity>[
         ModelProperty(
             id: const IdUid(8, 1044421159773595788),
             name: 'scheduleType',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(9, 4349745911690109601),
+            name: 'taskNum',
             type: 6,
             flags: 0)
       ],
@@ -201,7 +206,7 @@ ModelDefinition getObjectBoxModel() {
           final titleOffset = fbb.writeString(object.title);
           final assigneeMemberIdOffset =
               fbb.writeString(object.assigneeMemberId);
-          fbb.startTable(9);
+          fbb.startTable(10);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, titleOffset);
           fbb.addInt64(2, object.price);
@@ -210,6 +215,7 @@ ModelDefinition getObjectBoxModel() {
           fbb.addBool(5, object.isDone);
           fbb.addOffset(6, assigneeMemberIdOffset);
           fbb.addInt64(7, object.scheduleType);
+          fbb.addInt64(8, object.taskNum);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -236,7 +242,9 @@ ModelDefinition getObjectBoxModel() {
               assigneeMemberId: const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 16, ''),
               scheduleType:
-                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0));
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0),
+              taskNum:
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 20, 0));
 
           return object;
         })
@@ -290,4 +298,7 @@ class Task_ {
   /// see [Task.scheduleType]
   static final scheduleType =
       QueryIntegerProperty<Task>(_entities[1].properties[7]);
+
+  /// see [Task.taskNum]
+  static final taskNum = QueryIntegerProperty<Task>(_entities[1].properties[8]);
 }

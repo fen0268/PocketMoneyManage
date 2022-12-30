@@ -15,5 +15,6 @@ class Task with _$Task {
     @Default(false) bool isDone,
     @Default('') String assigneeMemberId,
     @Default(0) int scheduleType,
+    @Default(0) int taskNum,
   }) = _Task;
 }

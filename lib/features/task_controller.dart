@@ -4,8 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../main.dart';
 import '../models/task/task.dart';
 
-class WorkNotifier extends StateNotifier<Task> {
-  WorkNotifier() : super(Task(id: 0));
+final taskNotifierProvider = StateNotifierProvider<TaskNotifier, Task>(
+  (ref) => TaskNotifier(),
+);
+
+class TaskNotifier extends StateNotifier<Task> {
+  TaskNotifier() : super(Task(id: 0));
   final taskBox = store.box<Task>();
   final titleController = TextEditingController();
   final priceController = TextEditingController();
@@ -16,7 +20,7 @@ class WorkNotifier extends StateNotifier<Task> {
     super.dispose();
   }
 
-  void taskAdd() {
+  void taskAdd(DateTime doingAt) {
     final price = int.parse(priceController.text);
     final fetchTaskBoxId =
         taskBox.getAll().isEmpty ? 0 : taskBox.getAll().last.id;
@@ -25,6 +29,8 @@ class WorkNotifier extends StateNotifier<Task> {
       id: fetchTaskBoxId + 1,
       title: titleController.text,
       price: price,
+      doingAt: doingAt,
+      isDone: false,
     );
 
     state = state.copyWith(

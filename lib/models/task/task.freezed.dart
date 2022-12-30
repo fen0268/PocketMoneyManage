@@ -25,6 +25,7 @@ mixin _$Task {
   bool get isDone => throw _privateConstructorUsedError;
   String get assigneeMemberId => throw _privateConstructorUsedError;
   int get scheduleType => throw _privateConstructorUsedError;
+  int get taskNum => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TaskCopyWith<Task> get copyWith => throw _privateConstructorUsedError;
@@ -43,7 +44,8 @@ abstract class $TaskCopyWith<$Res> {
       DateTime? createdAt,
       bool isDone,
       String assigneeMemberId,
-      int scheduleType});
+      int scheduleType,
+      int taskNum});
 }
 
 /// @nodoc
@@ -67,6 +69,7 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
     Object? isDone = null,
     Object? assigneeMemberId = null,
     Object? scheduleType = null,
+    Object? taskNum = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -101,6 +104,10 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
           ? _value.scheduleType
           : scheduleType // ignore: cast_nullable_to_non_nullable
               as int,
+      taskNum: null == taskNum
+          ? _value.taskNum
+          : taskNum // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -119,7 +126,8 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
       DateTime? createdAt,
       bool isDone,
       String assigneeMemberId,
-      int scheduleType});
+      int scheduleType,
+      int taskNum});
 }
 
 /// @nodoc
@@ -139,6 +147,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
     Object? isDone = null,
     Object? assigneeMemberId = null,
     Object? scheduleType = null,
+    Object? taskNum = null,
   }) {
     return _then(_$_Task(
       id: null == id
@@ -173,6 +182,10 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
           ? _value.scheduleType
           : scheduleType // ignore: cast_nullable_to_non_nullable
               as int,
+      taskNum: null == taskNum
+          ? _value.taskNum
+          : taskNum // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -189,7 +202,8 @@ class _$_Task implements _Task {
       this.createdAt,
       this.isDone = false,
       this.assigneeMemberId = '',
-      this.scheduleType = 0});
+      this.scheduleType = 0,
+      this.taskNum = 0});
 
   @override
   @Id(assignable: true)
@@ -213,10 +227,13 @@ class _$_Task implements _Task {
   @override
   @JsonKey()
   final int scheduleType;
+  @override
+  @JsonKey()
+  final int taskNum;
 
   @override
   String toString() {
-    return 'Task(id: $id, title: $title, price: $price, doingAt: $doingAt, createdAt: $createdAt, isDone: $isDone, assigneeMemberId: $assigneeMemberId, scheduleType: $scheduleType)';
+    return 'Task(id: $id, title: $title, price: $price, doingAt: $doingAt, createdAt: $createdAt, isDone: $isDone, assigneeMemberId: $assigneeMemberId, scheduleType: $scheduleType, taskNum: $taskNum)';
   }
 
   @override
@@ -234,12 +251,13 @@ class _$_Task implements _Task {
             (identical(other.assigneeMemberId, assigneeMemberId) ||
                 other.assigneeMemberId == assigneeMemberId) &&
             (identical(other.scheduleType, scheduleType) ||
-                other.scheduleType == scheduleType));
+                other.scheduleType == scheduleType) &&
+            (identical(other.taskNum, taskNum) || other.taskNum == taskNum));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, title, price, doingAt,
-      createdAt, isDone, assigneeMemberId, scheduleType);
+      createdAt, isDone, assigneeMemberId, scheduleType, taskNum);
 
   @JsonKey(ignore: true)
   @override
@@ -257,7 +275,8 @@ abstract class _Task implements Task {
       final DateTime? createdAt,
       final bool isDone,
       final String assigneeMemberId,
-      final int scheduleType}) = _$_Task;
+      final int scheduleType,
+      final int taskNum}) = _$_Task;
 
   @override
   @Id(assignable: true)
@@ -276,6 +295,8 @@ abstract class _Task implements Task {
   String get assigneeMemberId;
   @override
   int get scheduleType;
+  @override
+  int get taskNum;
   @override
   @JsonKey(ignore: true)
   _$$_TaskCopyWith<_$_Task> get copyWith => throw _privateConstructorUsedError;

@@ -21,7 +21,7 @@ class MemberAddPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ObjectBox'),
+        title: const Text('メンバー を追加'),
       ),
       body: SingleChildScrollView(
         child: Column(
