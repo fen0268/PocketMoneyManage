@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../main.dart';
 import '../models/member/member.dart';
 import '../models/task/task.dart';
+import '../utils/extensions/date_time_extension.dart';
 
 final taskNotifierProvider = StateNotifierProvider<TaskNotifier, Task>(
   (ref) => TaskNotifier(),
@@ -32,6 +33,8 @@ class TaskNotifier extends StateNotifier<Task> {
     final fetchTaskBoxId =
         taskBox.getAll().isEmpty ? 0 : taskBox.getAll().last.id;
 
+    final dateTenYearDays = doingAt.tenYearLater.difference(doingAt).inDays;
+    
     final newTask = Task(
       id: fetchTaskBoxId + 1,
       title: titleController.text,
