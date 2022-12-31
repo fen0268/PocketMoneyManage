@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../main.dart';
 import '../models/member/member.dart';
 import '../models/task/task.dart';
-import '../utils/extensions/date_time_extension.dart';
+import '../utils/date_time_extension.dart';
 
 final taskNotifierProvider = StateNotifierProvider<TaskNotifier, Task>(
   (ref) => TaskNotifier(),
