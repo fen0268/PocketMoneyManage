@@ -16,9 +16,9 @@ class FloatingActionButtonWidget extends ConsumerWidget {
     final dateNotifier = ref.watch(dateNotifierProvider.notifier);
     final taskNotifier = ref.watch(taskNotifierProvider.notifier);
     return SpeedDial(
-      icon: Icons.share,
       foregroundColor: Colors.grey.shade300,
       backgroundColor: Colors.pink.shade400,
+      animatedIcon: AnimatedIcons.menu_close,
       children: [
         SpeedDialChild(
           child: Icon(
