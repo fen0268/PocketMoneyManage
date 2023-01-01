@@ -7,6 +7,7 @@ import '../features/date_controller.dart';
 import '../features/task_controller.dart';
 import '../main.dart';
 import '../models/member/member.dart';
+import 'schedule_type_select_page.dart';
 
 class TaskAddPage extends ConsumerWidget {
   const TaskAddPage({super.key});
@@ -139,15 +140,39 @@ class TaskAddPage extends ConsumerWidget {
               ),
             ),
 
-            /// 詳細オプション
+            /// 繰り返し選択
             Container(
-              padding: const EdgeInsets.only(left: 5, right: 5),
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  '詳細オプション',
-                  style: TextStyle(color: Colors.grey),
-                ),
+              padding: const EdgeInsets.only(left: 5, right: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.restart_alt,
+                    color: Colors.grey,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      showModalBottomSheet<void>(
+                        context: context,
+                        isScrollControlled: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          ),
+                        ),
+                        builder: (context) => SizedBox(
+                          height: deviceHeight * 0.90,
+                          child: const ScheduleTypeSelectPage(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      '繰り返さない',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                ],
               ),
             ),
             const Divider(),
