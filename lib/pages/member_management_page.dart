@@ -17,6 +17,7 @@ class MemberManagementPage extends ConsumerWidget {
               .getAll()
               .map(
                 (e) => ListTile(
+                  onTap: () {},
                   title: Text(e.name),
                 ),
               )
