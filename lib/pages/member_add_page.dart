@@ -21,7 +21,7 @@ class MemberAddPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('メンバー を追加'),
+        title: const Text('メンバー 追加'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -30,32 +30,16 @@ class MemberAddPage extends ConsumerWidget {
               padding: const EdgeInsets.all(32),
               child: TextFormField(
                 controller: notifier.nameController,
-                decoration: const InputDecoration(hintText: 'ユーザー名'),
+                decoration: const InputDecoration(hintText: '名前'),
               ),
             ),
             ElevatedButton(
-              onPressed: notifier.memberAdd,
-              child: const Text('ユーザーを追加する'),
-            ),
-            const SizedBox(height: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: userBox
-                  .getAll()
-                  .map(
-                    (e) => ListTile(
-                      title: Text(
-                        'ID: ${e.id}, name: ${e.name}, DateTime: ${e.createdAt}',
-                      ),
-                      trailing: IconButton(
-                        onPressed: () {
-                          notifier.removeUser(e.id);
-                        },
-                        icon: const Icon(Icons.delete),
-                      ),
-                    ),
-                  )
-                  .toList(),
+              onPressed: () {
+                notifier.memberAdd();
+                /// pop up 設置 検討
+                Navigator.of(context).pop();
+              },
+              child: const Text('メンバー 追加'),
             ),
           ],
         ),
