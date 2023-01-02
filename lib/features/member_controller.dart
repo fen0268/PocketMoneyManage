@@ -27,13 +27,11 @@ class MemberNotifier extends StateNotifier<Member> {
     final newMember =
         Member(id: fetchMemberBoxId + 1, name: nameController.text);
 
-    final now = DateTime.now();
-
     state = state.copyWith(
       id: newMember.id,
       name: newMember.name,
       income: 0,
-      createdAt: DateTime(now.year, now.month, now.day),
+      createdAt: DateTime.now(),
     );
     memberBox.put(state);
   }

@@ -152,18 +152,9 @@ class TaskAddPage extends ConsumerWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      showModalBottomSheet<void>(
-                        context: context,
-                        isScrollControlled: true,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          ),
-                        ),
-                        builder: (context) => SizedBox(
-                          height: deviceHeight * 0.90,
-                          child: const ScheduleTypeSelectPage(),
+                      Navigator.of(context, rootNavigator: true).push<void>(
+                        MaterialPageRoute(
+                          builder: (context) => const ScheduleTypeSelectPage(),
                         ),
                       );
                     },
