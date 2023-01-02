@@ -5,6 +5,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../features/date_controller.dart';
 import '../features/task_controller.dart';
 import '../pages/member_add_page.dart';
+import '../pages/member_management_page.dart';
 import '../pages/task_add_page.dart';
 
 class FloatingActionButtonWidget extends ConsumerWidget {
@@ -50,15 +51,48 @@ class FloatingActionButtonWidget extends ConsumerWidget {
         ),
         SpeedDialChild(
           child: Icon(
-            Icons.people_outlined,
+            Icons.group_add,
             color: Colors.pink.shade400,
           ),
           label: 'メンバーを追加',
           backgroundColor: Colors.grey.shade300,
           onTap: () {
-            Navigator.of(context).push<void>(
-              MaterialPageRoute(
-                builder: (context) => const MemberAddPage(),
+            showModalBottomSheet<void>(
+              context: context,
+              isScrollControlled: true,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+              ),
+              builder: (context) => SizedBox(
+                height: deviceHeight * 0.90,
+                child: const MemberAddPage(),
+              ),
+            );
+          },
+        ),
+        SpeedDialChild(
+          child: Icon(
+            Icons.people_outlined,
+            color: Colors.pink.shade400,
+          ),
+          label: 'メンバーを管理',
+          backgroundColor: Colors.grey.shade300,
+          onTap: () {
+            showModalBottomSheet<void>(
+              context: context,
+              isScrollControlled: true,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+              ),
+              builder: (context) => SizedBox(
+                height: deviceHeight * 0.90,
+                child: const MemberManagementPage(),
               ),
             );
           },

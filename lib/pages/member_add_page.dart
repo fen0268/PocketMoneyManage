@@ -36,6 +36,7 @@ class MemberAddPage extends ConsumerWidget {
             ElevatedButton(
               onPressed: () {
                 notifier.memberAdd();
+
                 /// pop up 設置 検討
                 Navigator.of(context).pop();
               },
