@@ -36,6 +36,10 @@ class MemberNotifier extends StateNotifier<Member> {
       createdAt: DateTime(now.year, now.month, now.day),
     );
     memberBox.put(state);
+
+    /// メンバーを追加したときに nameController の値を削除
+    /// ビルドしたときにアサーションエラーが発生
+    nameController.clear();
   }
 
   void removeUser(int id) {
