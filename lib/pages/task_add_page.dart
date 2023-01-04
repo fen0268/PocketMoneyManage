@@ -110,32 +110,30 @@ class TaskAddPage extends ConsumerWidget {
             /// 日付選択
             Container(
               padding: const EdgeInsets.only(top: 5, left: 15, right: 5),
-              child: Expanded(
-                child: Theme(
-                  data: Theme.of(context).copyWith(
-                    dividerColor: Colors.transparent,
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  dividerColor: Colors.transparent,
+                ),
+                child: ExpansionTile(
+                  leading: Icon(
+                    Icons.schedule,
+                    color: Colors.grey.shade500,
                   ),
-                  child: ExpansionTile(
-                    leading: Icon(
-                      Icons.schedule,
-                      color: Colors.grey.shade500,
-                    ),
-                    title: Text(
-                      outputFormat.format(dateData.selectedDate!),
-                    ),
-                    children: [
-                      TableCalendar<void>(
-                        focusedDay: dateData.selectedDate!,
-                        currentDay: dateData.selectedDate,
-                        firstDay: DateTime(2020),
-                        lastDay: DateTime(2120),
-                        headerVisible: false,
-                        onDaySelected: (selectedDay, focusedDay) {
-                          dateNotifier.selectDate(selectedDay);
-                        },
-                      )
-                    ],
+                  title: Text(
+                    outputFormat.format(dateData.selectedDate!),
                   ),
+                  children: [
+                    TableCalendar<void>(
+                      focusedDay: dateData.selectedDate!,
+                      currentDay: dateData.selectedDate,
+                      firstDay: DateTime(2020),
+                      lastDay: DateTime(2120),
+                      headerVisible: false,
+                      onDaySelected: (selectedDay, focusedDay) {
+                        dateNotifier.selectDate(selectedDay);
+                      },
+                    )
+                  ],
                 ),
               ),
             ),
@@ -171,38 +169,36 @@ class TaskAddPage extends ConsumerWidget {
             /// メンバー選択
             Container(
               padding: const EdgeInsets.only(left: 15, right: 5),
-              child: Expanded(
-                child: Theme(
-                  data: Theme.of(context).copyWith(
-                    dividerColor: Colors.transparent,
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  dividerColor: Colors.transparent,
+                ),
+                child: ExpansionTile(
+                  leading: Icon(
+                    Icons.people,
+                    color: Colors.grey.shade500,
                   ),
-                  child: ExpansionTile(
-                    leading: Icon(
-                      Icons.people,
-                      color: Colors.grey.shade500,
-                    ),
-                    title: taskNotifier.isSelectedMember
-                        ? Text(taskNotifier.assigneeMember!.name)
-                        : const Text('メンバーを選択'),
-                    children: memberBox
-                        .getAll()
-                        .map(
-                          (e) => GestureDetector(
-                            onTap: () {
-                              taskNotifier.selectMember(e);
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.only(left: 56),
-                              child: ListTile(
-                                title: Text(
-                                  e.name,
-                                ),
+                  title: taskNotifier.isSelectedMember
+                      ? Text(taskNotifier.assigneeMember!.name)
+                      : const Text('メンバーを選択'),
+                  children: memberBox
+                      .getAll()
+                      .map(
+                        (e) => GestureDetector(
+                          onTap: () {
+                            taskNotifier.selectMember(e);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.only(left: 56),
+                            child: ListTile(
+                              title: Text(
+                                e.name,
                               ),
                             ),
                           ),
-                        )
-                        .toList(),
-                  ),
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
             ),
