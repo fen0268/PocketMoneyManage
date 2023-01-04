@@ -11,6 +11,16 @@ class MemberManagementPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final memberBox = store.box<Member>();
     return Scaffold(
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        elevation: 0,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: memberBox
