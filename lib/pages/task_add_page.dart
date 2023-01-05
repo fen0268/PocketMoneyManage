@@ -22,9 +22,9 @@ class TaskAddPage extends ConsumerWidget {
     final scheduleData = ref.watch(scheduleNumNotifierProvider);
     final scheduleNotifier = ref.watch(scheduleNumNotifierProvider.notifier);
     final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
     final outputFormat = DateFormat('yyyy年 M月 d日');
     final memberBox = store.box<Member>();
-
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
@@ -68,7 +68,7 @@ class TaskAddPage extends ConsumerWidget {
           children: [
             /// 家事名
             Container(
-              padding: const EdgeInsets.only(top: 5, left: 50, right: 5),
+              padding: EdgeInsets.only(top: 5, left: deviceWidth * 0.15),
               child: TextFormField(
                 style: const TextStyle(fontSize: 25),
                 controller: taskNotifier.titleController,
@@ -85,7 +85,7 @@ class TaskAddPage extends ConsumerWidget {
 
             /// お小遣い
             Container(
-              padding: const EdgeInsets.only(top: 5, left: 50, right: 5),
+              padding: EdgeInsets.only(top: 5, left: deviceWidth * 0.15),
               child: TextFormField(
                 style: const TextStyle(fontSize: 25),
                 keyboardType: TextInputType.number,
@@ -112,7 +112,8 @@ class TaskAddPage extends ConsumerWidget {
 
             /// 日付選択
             Container(
-              padding: const EdgeInsets.only(top: 5, left: 15, right: 5),
+              padding:
+                  EdgeInsets.only(top: 5, left: deviceWidth * 0.04, right: 5),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
@@ -143,13 +144,15 @@ class TaskAddPage extends ConsumerWidget {
 
             /// 繰り返し選択
             Container(
-              padding: const EdgeInsets.only(left: 5, right: 25),
+              padding: const EdgeInsets.only(),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
-                    Icons.restart_alt,
-                    color: Colors.grey,
+                  Container(
+                    padding: EdgeInsets.only(left: deviceWidth * 0.09),
+                    child: const Icon(
+                      Icons.restart_alt,
+                      color: Colors.grey,
+                    ),
                   ),
                   TextButton(
                     onPressed: () {
@@ -172,7 +175,7 @@ class TaskAddPage extends ConsumerWidget {
 
             /// メンバー選択
             Container(
-              padding: const EdgeInsets.only(left: 15, right: 5),
+              padding: EdgeInsets.only(left: deviceWidth * 0.04, right: 5),
               child: Theme(
                 data: Theme.of(context).copyWith(
                   dividerColor: Colors.transparent,
