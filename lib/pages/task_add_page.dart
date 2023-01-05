@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../features/date_controller.dart';
+import '../features/schedule_num_controller.dart';
 import '../features/task_controller.dart';
 import '../main.dart';
 import '../models/member/member.dart';
@@ -18,6 +19,8 @@ class TaskAddPage extends ConsumerWidget {
     final dateNotifier = ref.watch(dateNotifierProvider.notifier);
     final taskData = ref.watch(taskNotifierProvider);
     final taskNotifier = ref.watch(taskNotifierProvider.notifier);
+    final scheduleData = ref.watch(scheduleNumNotifierProvider);
+    final scheduleNotifier = ref.watch(scheduleNumNotifierProvider.notifier);
     final deviceHeight = MediaQuery.of(context).size.height;
     final outputFormat = DateFormat('yyyy年 M月 d日');
     final memberBox = store.box<Member>();
@@ -156,9 +159,10 @@ class TaskAddPage extends ConsumerWidget {
                         ),
                       );
                     },
-                    child: const Text(
-                      '繰り返さない',
-                      style: TextStyle(color: Colors.grey),
+                    child: Text(
+                      scheduleNotifier
+                          .getScheduleType(scheduleData.scheduleNum),
+                      style: const TextStyle(color: Colors.grey),
                     ),
                   ),
                 ],
