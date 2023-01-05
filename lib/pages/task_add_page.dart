@@ -4,9 +4,11 @@ import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../features/date_controller.dart';
+import '../features/schedule_num_controller.dart';
 import '../features/task_controller.dart';
 import '../main.dart';
 import '../models/member/member.dart';
+import 'schedule_type_select_page.dart';
 
 class TaskAddPage extends ConsumerWidget {
   const TaskAddPage({super.key});
@@ -17,10 +19,12 @@ class TaskAddPage extends ConsumerWidget {
     final dateNotifier = ref.watch(dateNotifierProvider.notifier);
     final taskData = ref.watch(taskNotifierProvider);
     final taskNotifier = ref.watch(taskNotifierProvider.notifier);
+    final scheduleData = ref.watch(scheduleNumNotifierProvider);
+    final scheduleNotifier = ref.watch(scheduleNumNotifierProvider.notifier);
     final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
     final outputFormat = DateFormat('yyyy年 M月 d日');
     final memberBox = store.box<Member>();
-
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
@@ -64,7 +68,7 @@ class TaskAddPage extends ConsumerWidget {
           children: [
             /// 家事名
             Container(
-              padding: const EdgeInsets.only(top: 5, left: 50, right: 5),
+              padding: EdgeInsets.only(top: 5, left: deviceWidth * 0.15),
               child: TextFormField(
                 style: const TextStyle(fontSize: 25),
                 controller: taskNotifier.titleController,
@@ -81,7 +85,7 @@ class TaskAddPage extends ConsumerWidget {
 
             /// お小遣い
             Container(
-              padding: const EdgeInsets.only(top: 5, left: 50, right: 5),
+              padding: EdgeInsets.only(top: 5, left: deviceWidth * 0.15),
               child: TextFormField(
                 style: const TextStyle(fontSize: 25),
                 keyboardType: TextInputType.number,
@@ -108,85 +112,100 @@ class TaskAddPage extends ConsumerWidget {
 
             /// 日付選択
             Container(
-              padding: const EdgeInsets.only(top: 5, left: 15, right: 5),
-              child: Expanded(
-                child: Theme(
-                  data: Theme.of(context).copyWith(
-                    dividerColor: Colors.transparent,
+              padding:
+                  EdgeInsets.only(top: 5, left: deviceWidth * 0.04, right: 5),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  dividerColor: Colors.transparent,
+                ),
+                child: ExpansionTile(
+                  leading: Icon(
+                    Icons.schedule,
+                    color: Colors.grey.shade500,
                   ),
-                  child: ExpansionTile(
-                    leading: Icon(
-                      Icons.schedule,
-                      color: Colors.grey.shade500,
-                    ),
-                    title: Text(
-                      outputFormat.format(dateData.selectedDate!),
-                    ),
-                    children: [
-                      TableCalendar<void>(
-                        focusedDay: dateData.selectedDate!,
-                        currentDay: dateData.selectedDate,
-                        firstDay: DateTime(2020),
-                        lastDay: DateTime(2120),
-                        headerVisible: false,
-                        onDaySelected: (selectedDay, focusedDay) {
-                          dateNotifier.selectDate(selectedDay);
-                        },
-                      )
-                    ],
+                  title: Text(
+                    outputFormat.format(dateData.selectedDate!),
                   ),
+                  children: [
+                    TableCalendar<void>(
+                      focusedDay: dateData.selectedDate!,
+                      currentDay: dateData.selectedDate,
+                      firstDay: DateTime(2020),
+                      lastDay: DateTime(2120),
+                      headerVisible: false,
+                      onDaySelected: (selectedDay, focusedDay) {
+                        dateNotifier.selectDate(selectedDay);
+                      },
+                    )
+                  ],
                 ),
               ),
             ),
 
-            /// 詳細オプション
+            /// 繰り返し選択
             Container(
-              padding: const EdgeInsets.only(left: 5, right: 5),
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  '詳細オプション',
-                  style: TextStyle(color: Colors.grey),
-                ),
+              padding: const EdgeInsets.only(),
+              child: Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(left: deviceWidth * 0.09),
+                    child: const Icon(
+                      Icons.restart_alt,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context, rootNavigator: true).push<void>(
+                        MaterialPageRoute(
+                          builder: (context) => const ScheduleTypeSelectPage(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      scheduleNotifier
+                          .getScheduleType(scheduleData.scheduleNum),
+                      style: const TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                ],
               ),
             ),
             const Divider(),
 
             /// メンバー選択
             Container(
-              padding: const EdgeInsets.only(left: 15, right: 5),
-              child: Expanded(
-                child: Theme(
-                  data: Theme.of(context).copyWith(
-                    dividerColor: Colors.transparent,
+              padding: EdgeInsets.only(left: deviceWidth * 0.04, right: 5),
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  dividerColor: Colors.transparent,
+                ),
+                child: ExpansionTile(
+                  leading: Icon(
+                    Icons.people,
+                    color: Colors.grey.shade500,
                   ),
-                  child: ExpansionTile(
-                    leading: Icon(
-                      Icons.people,
-                      color: Colors.grey.shade500,
-                    ),
-                    title: taskNotifier.isSelectedMember
-                        ? Text(taskNotifier.assigneeMember!.name)
-                        : const Text('メンバーを選択'),
-                    children: memberBox
-                        .getAll()
-                        .map(
-                          (e) => GestureDetector(
-                            onTap: () {
-                              taskNotifier.selectMember(e);
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.only(left: 56),
-                              child: ListTile(
-                                title: Text(
-                                  e.name,
-                                ),
+                  title: taskNotifier.isSelectedMember
+                      ? Text(taskNotifier.assigneeMember!.name)
+                      : const Text('メンバーを選択'),
+                  children: memberBox
+                      .getAll()
+                      .map(
+                        (e) => GestureDetector(
+                          onTap: () {
+                            taskNotifier.selectMember(e);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.only(left: 56),
+                            child: ListTile(
+                              title: Text(
+                                e.name,
                               ),
                             ),
                           ),
-                        )
-                        .toList(),
-                  ),
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
             ),
