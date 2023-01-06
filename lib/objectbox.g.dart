@@ -52,7 +52,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(3, 2301546402162453040),
       name: 'Task',
-      lastPropertyId: const IdUid(9, 4349745911690109601),
+      lastPropertyId: const IdUid(11, 2005867990366584039),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -86,11 +86,6 @@ final _entities = <ModelEntity>[
             type: 1,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 4294515498366449392),
-            name: 'assigneeMemberId',
-            type: 6,
-            flags: 0),
-        ModelProperty(
             id: const IdUid(8, 1044421159773595788),
             name: 'scheduleType',
             type: 6,
@@ -98,6 +93,11 @@ final _entities = <ModelEntity>[
         ModelProperty(
             id: const IdUid(9, 4349745911690109601),
             name: 'taskNum',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(11, 2005867990366584039),
+            name: 'assigneeMemberId',
             type: 6,
             flags: 0)
       ],
@@ -139,7 +139,9 @@ ModelDefinition getObjectBoxModel() {
         2291478109814787585,
         4931774163276701685,
         6582913146019921924,
-        7236096820126950697
+        7236096820126950697,
+        4294515498366449392,
+        826022498983257293
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -204,16 +206,16 @@ ModelDefinition getObjectBoxModel() {
         },
         objectToFB: (Task object, fb.Builder fbb) {
           final titleOffset = fbb.writeString(object.title);
-          fbb.startTable(10);
+          fbb.startTable(12);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, titleOffset);
           fbb.addInt64(2, object.price);
           fbb.addInt64(3, object.doingAt?.millisecondsSinceEpoch);
           fbb.addInt64(4, object.createdAt?.millisecondsSinceEpoch);
           fbb.addBool(5, object.isDone);
-          fbb.addInt64(6, object.assigneeMemberId);
           fbb.addInt64(7, object.scheduleType);
           fbb.addInt64(8, object.taskNum);
+          fbb.addInt64(10, object.assigneeMemberId);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -238,7 +240,7 @@ ModelDefinition getObjectBoxModel() {
               isDone: const fb.BoolReader()
                   .vTableGet(buffer, rootOffset, 14, false),
               assigneeMemberId: const fb.Int64Reader()
-                  .vTableGetNullable(buffer, rootOffset, 16),
+                  .vTableGetNullable(buffer, rootOffset, 24),
               scheduleType:
                   const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0),
               taskNum:
@@ -289,14 +291,14 @@ class Task_ {
   /// see [Task.isDone]
   static final isDone = QueryBooleanProperty<Task>(_entities[1].properties[5]);
 
-  /// see [Task.assigneeMemberId]
-  static final assigneeMemberId =
-      QueryIntegerProperty<Task>(_entities[1].properties[6]);
-
   /// see [Task.scheduleType]
   static final scheduleType =
-      QueryIntegerProperty<Task>(_entities[1].properties[7]);
+      QueryIntegerProperty<Task>(_entities[1].properties[6]);
 
   /// see [Task.taskNum]
-  static final taskNum = QueryIntegerProperty<Task>(_entities[1].properties[8]);
+  static final taskNum = QueryIntegerProperty<Task>(_entities[1].properties[7]);
+
+  /// see [Task.assigneeMemberId]
+  static final assigneeMemberId =
+      QueryIntegerProperty<Task>(_entities[1].properties[8]);
 }

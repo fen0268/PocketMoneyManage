@@ -30,9 +30,7 @@ class FloatingActionButtonWidget extends ConsumerWidget {
           backgroundColor: Colors.grey.shade300,
           onTap: () {
             dateNotifier.initDateTime();
-            taskNotifier
-              ..isSelectedMember = false
-              ..assigneeMember = null;
+            taskNotifier.isSelectedMember = false;
             showModalBottomSheet<void>(
               context: context,
               isScrollControlled: true,

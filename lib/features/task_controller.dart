@@ -16,9 +16,8 @@ class TaskNotifier extends StateNotifier<Task> {
   final memberBox = store.box<Member>();
   final titleController = TextEditingController();
   final priceController = TextEditingController();
-  Member? assigneeMember;
-  int? assigneeMemberId;
   bool isSelectedMember = false;
+  Member? assigneeMember;
 
   @override
   void dispose() {
@@ -34,13 +33,12 @@ class TaskNotifier extends StateNotifier<Task> {
         taskBox.getAll().isEmpty ? 0 : taskBox.getAll().last.id;
 
     final dateTenYearDays = doingAt.tenYearLater.difference(doingAt).inDays;
-    
+
     final newTask = Task(
       id: fetchTaskBoxId + 1,
       title: titleController.text,
       price: price,
       doingAt: doingAt,
-      assigneeMemberId: assigneeMember!.id,
     );
 
     state = state.copyWith(
@@ -50,7 +48,6 @@ class TaskNotifier extends StateNotifier<Task> {
       createdAt: DateTime.now(),
       doingAt: newTask.doingAt,
       isDone: false,
-      assigneeMemberId: newTask.assigneeMemberId,
     );
 
     taskBox.put(state);
@@ -58,8 +55,7 @@ class TaskNotifier extends StateNotifier<Task> {
 
   void selectMember(Member member) {
     isSelectedMember = true;
-    assigneeMember = member;
-    assigneeMemberId = member.id;
-    state = state.copyWith(assigneeMemberId: assigneeMemberId);
+    state = state.copyWith(assigneeMemberId: member.id);
+    assigneeMember = memberBox.get(member.id);
   }
 }
